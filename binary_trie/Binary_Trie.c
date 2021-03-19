@@ -27,6 +27,8 @@ typedef struct list node;
 typedef node *btrie;
 
 /*global variables*/
+unsigned long long int begin, end, total = 0;
+unsigned long long int *clock;
 btrie root;
 struct ENTRY *table;
 struct ENTRY *query;
@@ -34,10 +36,8 @@ struct ENTRY *input;
 int num_entry = 0;
 int num_query = 0;
 int num_input = 0;
-int N=0;
-unsigned long long int begin, end, total = 0;
-unsigned long long int *clock;
 int num_internode = 0;
+int num_totalnode=0;
 
 btrie create_node(){
 	btrie temp;
@@ -45,7 +45,7 @@ btrie create_node(){
 	temp=(btrie)malloc(sizeof(node));
 	temp->right=NULL;
 	temp->left=NULL;
-	temp->port=256;
+	temp->port=256;//default port is 8'b00000000
 	return temp;
 }
 
@@ -53,10 +53,13 @@ void add_node(unsigned int ip,unsigned char len,unsigned char nexthop){
 	btrie ptr=root;
 	int i;
 	for(i=0;i<len;i++){
+		// which bit from head, 1 mean right node 0 mean left node
 		if(ip&(1<<(31-i))){
+			// child is NULL
 			if(ptr->right==NULL)
 				ptr->right=create_node(); 
 			ptr=ptr->right;
+			// leaf node
 			if((i==len-1)&&(ptr->port==256))
 				ptr->port=nexthop;
 		}
