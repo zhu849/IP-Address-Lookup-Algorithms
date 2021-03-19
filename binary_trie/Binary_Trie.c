@@ -41,7 +41,6 @@ int num_node = 0;
 
 btrie create_node(){
 	btrie temp;
-	num_node++;
 	temp=(btrie)malloc(sizeof(node));
 	temp->right=NULL;
 	temp->left=NULL;
@@ -225,7 +224,7 @@ void count_node(btrie r){
 	if(r==NULL)
 		return;
 	count_node(r->left);
-	N++;
+	num_node++;
 	count_node(r->right);
 }
 //count distribution of computation time 
@@ -276,6 +275,7 @@ int main(int argc,char *argv[]){
 	create();//build binary trie
     
 	printf("Avg. Build Time: %llu\n", (end - begin) / num_entry);
+	count_node(root);
 	printf("number of nodes created: %d\n",num_node);
 	printf("Total memory requirement: %ld KB\n",((num_node*9)/1024));
 
