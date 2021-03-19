@@ -23,6 +23,8 @@ struct list{
 	unsigned int port;
 	struct list *left,*right;
 };
+typedef struct list node;
+typedef node *btrie;
 
 /*global variables*/
 btrie root;
@@ -36,8 +38,6 @@ int N=0;
 unsigned long long int begin, end, total = 0;
 unsigned long long int *clock;
 int num_internode = 0;
-typedef struct list node;
-typedef node *btrie;
 
 btrie create_node(){
 	btrie temp;
@@ -131,13 +131,12 @@ void search(unsigned int ip){
     else
 	  printf("%u\n",temp->port);
     */
-     
 }
 
 void set_input(char *file_name) {
 	FILE *fp;
 	int len;
-	char string[100];
+	char string[READ_STR_BUF];
 	unsigned int ip, nexthop;
 	fp = fopen(file_name, "r");
 	//count table size
