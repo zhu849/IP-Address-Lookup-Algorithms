@@ -305,6 +305,7 @@ int main(int argc,char *argv[]){
 		add_node(input[i].ip, input[i].len, input[i].port);
 	end = rdtsc();
 	printf("Avg. insert Time:%lld\n", (end - begin) / num_input);
+	num_node=0;
 	count_node(root);
  
 	printf("There are %d nodes in binary trie after insert\n", num_node);
