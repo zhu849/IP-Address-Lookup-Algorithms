@@ -1,14 +1,13 @@
-# IP lookup algorithm
+# Binary Trie
 
-## Binary Trie
-### How to use
+## How to use
 1. complie with gcc. Use `$ gcc Binary_trie.c` or `$ gcc Binary_trie.c -o2` command.
 2. Run executable file. Format is like: `$ ./a.out "table build file", "search file", "update file"` 
     * Example：`./a.out ipv4_90build.txt ipv4_90build.txt ipv4_10insert.txt`
 * If you want time consumption by failure search. Building the trie with 90% raw data and search trie with 100% raw data. This method is efficient when 90% raw data are not overlap with 100% raw data.
     * Example：`./a.out ipv4_90build.txt ipv4_100build.txt ipv4_10inert.txt`, This situation can get 10% miss search with your data input. 
 
-### Time Analysis
+## Time Analysis
 |Item|Result(clocks)|
 |-----|-----|
 |Avg. Build Time Per Entry|940|
@@ -17,7 +16,7 @@
 |(Max Clock, Min Clock)|(2338, 150)|
 |Avg. Update Time Per Entry|1040|
 
-### Clock Distribution
+## Clock Distribution
 |Clock Range|# of nodes|Percentage(%)|
 |-----|-----|-----|
 |0-100|0|0|
@@ -72,12 +71,14 @@
 |4900-5000|0|0|
 |5000+|0|0|
 |**Total**|**997952**|98|
-### Space Analysis
+
+## Space Analysis
 |Item|Result|
 |-----|-----|
 |# of nodes created|2282297|
 |Total memory requirement(before insert)|20059(KB)|
 |# of nodes after inserted|2420550|
 |Total memory requirement(after insert)|21274(KB)|
-#### Space Computation Method
+
+### Space Computation Method
 * Because one node have 2 pointer(4byte) and 1 exact value, port(1byte). So method show like$Total Node * (2*4+1) = TotalSpace Consumption$
