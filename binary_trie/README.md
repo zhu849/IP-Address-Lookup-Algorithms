@@ -81,4 +81,5 @@
 |Total memory requirement(after insert)|21274(KB)|
 
 ### Space Computation Method
-* Because one node have 2 pointer(4byte) and 1 exact value, port(1byte). So method show like $Total Node * (2*4+1) = TotalSpace Consumption$
+* Because one node have 2 pointer(4byte) and 1 exact value, port(1byte). Calculate method show like below： 
+	* Total Node * (2*4+1) = Total Space Consumption
