@@ -36,12 +36,12 @@ struct ENTRY *input;
 int num_entry = 0;
 int num_query = 0;
 int num_input = 0;
-int num_internode = 0;
-int num_totalnode=0;
+int num_node = 0;
+
 
 btrie create_node(){
 	btrie temp;
-	num_internode++;
+	num_node++;
 	temp=(btrie)malloc(sizeof(node));
 	temp->right=NULL;
 	temp->left=NULL;
@@ -276,8 +276,8 @@ int main(int argc,char *argv[]){
 	create();//build binary trie
     
 	printf("Avg. Build Time: %llu\n", (end - begin) / num_entry);
-	printf("number of nodes created: %d\n",num_internode);
-	printf("Total memory requirement: %ld KB\n",((num_internode*9)/1024));
+	printf("number of nodes created: %d\n",num_node);
+	printf("Total memory requirement: %ld KB\n",((num_node*9)/1024));
 
 	shuffle(query, num_query);
 
@@ -307,6 +307,7 @@ int main(int argc,char *argv[]){
 	printf("Avg. insert Time:%lld\n", (end - begin) / num_input);
 	count_node(root);
  
-	printf("There are %d nodes in binary trie after insert\n", N);
+	printf("There are %d nodes in binary trie after insert\n", num_node);
+	printf("Total memory requirement: %ld KB\n",((num_node*9)/1024));
 	return 0;
 }
