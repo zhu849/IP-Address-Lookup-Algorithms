@@ -1,11 +1,20 @@
 # Prefix Lens Analysis
 
-## How to use
+## How to use(ipv4)
 1. complie with `gcc. Use $ gcc ipv4_update_prefixLen_analysis.c` 
 2. Run executable file. `./a.out "target file"`
+* Provide an example file named "rrc_ipv4_update.txt" to test and input shoudl following this format.
 
-## Prefix Length Distribution
-* Number of node with different prefix length.
+## How to use(ipv6)
+1. complie with `gcc. Use $ gcc ipv6_update_prefixLen_analysis.c` 
+2. Run executable file. `./a.out "target file"`
+* Provide an example file named "rrc_ipv6_update.txt" to test and input shoudl following this format.
+* In this codes, it can deal with all case with ipv6 address count. Because it expandition "::" to full address format.
+    * `2404:5780:3::/48` will turn to `2404:5780:0003:0000:0000:0000:0000:0000` and do table set operation. 
+    * `2404:5780::3/48` will turn to `2404:5780:0000:0000:0000:0000:0000:0003` and do table set operation. 
+    * `::3/48` will turn to `0000:0000:0000:0000:0000:0000:0000:0003` and do table set operation. 
+
+## Prefix Length Distribution(IPv4)
 ```
 $ ./a.out rrc_ipv4_update.txt
 Distrbute status:
@@ -42,4 +51,38 @@ prefix length:29 = 5
 prefix length:30 = 13
 prefix length:31 = 5
 prefix length:32 = 186
+```
+
+## Prefix Length Distribution(IPv6)
+```
+prefix length : # of nodes
+             0 :        0
+             1 :        0
+             ...
+            28 :      951
+            29 :     1369
+            30 :      618
+            31 :       69
+            32 :    10253
+            33 :     2257
+            34 :     2291
+            35 :     1067
+            36 :     4232
+            37 :       75
+            38 :      275
+            39 :        0
+            40 :      896
+            41 :       58
+            42 :      398
+            43 :       39
+            44 :      669
+            45 :       57
+            46 :     2616
+            47 :      143
+            48 :     5647
+            49 :        0
+            50 :        0
+            51 :        0
+            ...
+            128:		0
 ```
