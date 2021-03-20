@@ -65,8 +65,7 @@ int count_trie_height(btrie p){
     else{
         int left_max = count_trie_height(p->left);
         int right_max = count_trie_height(p->right);
-        if(left_max >= right_max) return left_max+1;
-        else return right_max+1;
+        return (left_max >= right_max)?left_max+1:right_max+1;
     }
 }
 //Insert new node in segment table and trie structure
@@ -86,6 +85,7 @@ void insert_node(unsigned int ip, unsigned char len, unsigned char nexthop) {
 				segment_table[prefix].subarray[i] = 256;
 
 		}
+		//Set new node's nexthop
 		int insert_index = (ip & 0x0000FFFF) >> (16 - segment_table[prefix].max_height);
 		segment_table[prefix].subarray[insert_index] = nexthop;	
 	}	
@@ -168,9 +168,8 @@ unsigned int trie_search(unsigned int segment_nexthop, int subnode_index, btrie 
 	for (int j = max_height; j >= 0; j--) {
 		if (current == NULL) break;
 		if (current->port != 256) nexthop = current->port; // change longest matching prefix nexthop
-		// find next level
-		if (subnode_index&(0x00000001 << (j - 1))) current = current->right;
-		else current = current->left;
+		// Find next level
+		current = (subnode_index&(0x00000001 << (j - 1)))?current->right:current->left;
 	}
 	return nexthop;
 }
@@ -281,14 +280,14 @@ void create(){
 	int i;
 	begin=rdtsc();
 	segment_table = malloc(sizeof(segmentation_node) * 65536);
-	//segment table initialize
+	//Segment table initialize
 	for(i= 0;i<65536;i++){
         segment_table[i].port = 256;
         segment_table[i].pointer = NULL;
 		segment_table[i].subarray = NULL;
 		segment_table[i].max_height = 0;
     }
-    //build trie with all entry
+    //Build trie with all entry
 	for (i = 0; i < num_entry; i++)
 		add_node(table[i].ip, table[i].len, table[i].port);
 	for (i = 0; i < 65536; i++) 
@@ -317,7 +316,7 @@ void CountClock()
 	}
 	return;
 }
-//table entry shuffle
+//Table entry shuffle
 void shuffle(struct ENTRY *array, int n) {
     srand((unsigned)time(NULL));
     struct ENTRY *temp=(struct ENTRY *)malloc(sizeof(struct ENTRY));
@@ -342,10 +341,9 @@ int main(int argc,int *argv[]){
 	set_query(argv[2]);
 	set_input(argv[3]);
 	create();
-
 	printf("Avg. Build: %llu\n", (end - begin) / num_entry);
+	//Search operation
 	shuffle(query, num_query);
-	//search operation
 	for(j=0;j<100;j++){
 		for(i=0;i<num_query;i++){
 			begin=rdtsc();
@@ -365,10 +363,10 @@ int main(int argc,int *argv[]){
 	//Space calculation
 	for(i =0;i<65536;i++){
 		//Count number of subnode
-		num_subnode += (int)pow(2, segment_table[i].max_height);
+		num_subnode+=(int)pow(2,segment_table[i].max_height);
 		//Count number of subnode those have value
 		if(segment_table[i].subarray != NULL){
-			for(j=0;j<(int)pow(2, segment_table[i].max_height);j++)
+			for(j=0;j<(int)pow(2,segment_table[i].max_height);j++)
 				if(segment_table[i].subarray[j]!=256) num_have_val_subnode++;
 		}
         //Count segnode those have value
@@ -392,10 +390,10 @@ int main(int argc,int *argv[]){
 	num_have_val_subnode = 0;
 	for(i =0;i<65536;i++){
 		//Count number of subnode
-		num_subnode += (int)pow(2, segment_table[i].max_height);
+		num_subnode+=(int)pow(2,segment_table[i].max_height);
 		//Count number of subnode those have value
 		if(segment_table[i].subarray != NULL){
-			for(j=0;j<(int)pow(2, segment_table[i].max_height);j++)
+			for(j=0;j<(int)pow(2,segment_table[i].max_height);j++)
 				if(segment_table[i].subarray[j]!=256) num_have_val_subnode++;
 		}
         //Count segnode those have value
