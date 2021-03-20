@@ -17,40 +17,41 @@
 ## Prefix Length Distribution(IPv4)
 ```
 $ ./a.out rrc_ipv4_update.txt
-Distrbute status:
-prefix length:0 = 1
-prefix length:1 = 0
-prefix length:2 = 0
-prefix length:3 = 0
-prefix length:4 = 0
-prefix length:5 = 0
-prefix length:6 = 0
-prefix length:7 = 0
-prefix length:8 = 3
-prefix length:9 = 3
-prefix length:10 = 11
-prefix length:11 = 29
-prefix length:12 = 117
-prefix length:13 = 193
-prefix length:14 = 341
-prefix length:15 = 552
-prefix length:16 = 2454
-prefix length:17 = 1880
-prefix length:18 = 3792
-prefix length:19 = 6761
-prefix length:20 = 9161
-prefix length:21 = 11054
-prefix length:22 = 22947
-prefix length:23 = 19978
-prefix length:24 = 117227
-prefix length:25 = 5
-prefix length:26 = 4
-prefix length:27 = 3
-prefix length:28 = 2
-prefix length:29 = 5
-prefix length:30 = 13
-prefix length:31 = 5
-prefix length:32 = 186
+prefix length : # of nodes : percentage
+            0 :          1 :     0.00
+            1 :          0 :     0.00
+            2 :          0 :     0.00
+            3 :          0 :     0.00
+            4 :          0 :     0.00
+            5 :          0 :     0.00
+            6 :          0 :     0.00
+            7 :          0 :     0.00
+            8 :          3 :     0.00
+            9 :          3 :     0.00
+           10 :         11 :     0.01
+           11 :         29 :     0.01
+           12 :        117 :     0.06
+           13 :        193 :     0.10
+           14 :        341 :     0.17
+           15 :        552 :     0.28
+           16 :       2454 :     1.25
+           17 :       1880 :     0.96
+           18 :       3792 :     1.93
+           19 :       6761 :     3.44
+           20 :       9161 :     4.66
+           21 :      11054 :     5.62
+           22 :      22947 :    11.66
+           23 :      19978 :    10.16
+           24 :     117227 :    59.59
+           25 :          5 :     0.00
+           26 :          4 :     0.00
+           27 :          3 :     0.00
+           28 :          2 :     0.00
+           29 :          5 :     0.00
+           30 :         13 :     0.01
+           31 :          5 :     0.00
+           32 :        186 :     0.09
+Total nodes: 196727
 ```
 
 ## Prefix Length Distribution(IPv6)

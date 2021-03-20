@@ -95,8 +95,9 @@ int main(int argc, char *argv[]) {
 	int i, j;
 	set_table(argv[1]);
 	count_distribution();
-	printf("Distrbute status:\n");
+	printf("prefix length : # of nodes : percentage\n");
 	for (i = 0; i < 33; i++)
-		printf("prefix length:%d = %d\n", i, counter[i]);
+		printf("%13d : %10d : %8.2f\n", i, counter[i], (counter[i]/(float)num_entry)*100);
+	printf("Total nodes: %d\n", num_entry);
 	return 0;
 }
