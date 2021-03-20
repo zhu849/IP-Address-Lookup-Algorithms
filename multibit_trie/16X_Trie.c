@@ -20,16 +20,16 @@ static __inline__ unsigned long long rdtsc(void)
 }
 
 struct list{
-	unsigned int port;// int ?????????????????????
+	unsigned int port;
     struct list *left,*right;
 };
 typedef struct list node;
 typedef node *btrie;
 
-//node structure of segmentaion table
+//Node structure of segmentaion table
 struct segnode {
 	char max_height;
-	unsigned int port; // int ?????????????????????
+	unsigned int port; 
 	btrie pointer;
 	unsigned int *subarray;
 };
@@ -90,7 +90,7 @@ void insert_node(unsigned int ip, unsigned char len, unsigned char nexthop) {
 		segment_table[prefix].subarray[insert_index] = nexthop;	
 	}	
 }
-//add one entry info into trie
+//Add one entry info into trie
 void add_node(unsigned int ip,unsigned char len,unsigned char nexthop){
     btrie ptr=NULL;
 	int prefix = (ip&(0xFFFF0000)) >> 16;//16 bits prefix of ip, prefix will be index to find segment node
@@ -122,7 +122,7 @@ void add_node(unsigned int ip,unsigned char len,unsigned char nexthop){
     }
 }
 
-//split one line and reassembly for ip format
+//Split one line and reassembly for ip format
 void read_table(char *str,unsigned int *ip,int *len,unsigned int *nexthop){
 	char tok[]="./";
 	char buf[READ_STR_BUF],*str1;
@@ -161,7 +161,7 @@ void read_table(char *str,unsigned int *ip,int *len,unsigned int *nexthop){
 	*ip<<=8;
 	*ip+=n[3];
 }
-
+//Search in segment table down trie with level 16 to 32
 unsigned int trie_search(unsigned int segment_nexthop, int subnode_index, btrie r, int max_height) {
 	btrie current = r;
 	unsigned int nexthop = segment_nexthop;
@@ -401,9 +401,9 @@ int main(int argc,int *argv[]){
         //Count segnode those have value
         if(segment_table[i].port != 256) num_have_val_segnode++;
 	}
-	printf("Number of subnodes: %d\n", num_subnode);
-	printf("There are %d segnodes have port value.\n",num_have_val_segnode);
-	printf("There are %d subnodes have port value.\n",num_have_val_subnode);
-	printf("Total memory requirement: %d KB\n", (10*65536+4*num_subnode)/1024);
+	printf("Number of subnodes after insert operation: %d\n", num_subnode);
+	printf("There are %d segnodes have port value after insert operation.\n",num_have_val_segnode);
+	printf("There are %d subnodes have port value after insert operation.\n",num_have_val_subnode);
+	printf("Total memory requirement after insert operation: %d KB\n", (10*65536+4*num_subnode)/1024);
 	return 0;
 }
