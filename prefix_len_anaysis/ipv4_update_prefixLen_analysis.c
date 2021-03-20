@@ -17,7 +17,7 @@ struct ENTRY *table;
 int num_entry;
 int counter[33] = {0};//initialize with 0
 
-//split one line and reassembly for ip format
+//split one line and reassembly with ip 
 void read_table(char *str,unsigned int *ip,int *len,unsigned int *nexthop){
 	char tok[]="./";
 	char buf[READ_STR_BUF],*str1;
