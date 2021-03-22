@@ -86,24 +86,20 @@ void add_node(unsigned long long int ip_upper, unsigned long long int ip_lower, 
 }
 
 void search(unsigned long long int ip_upper, unsigned long long int ip_lower){
-	int j;
+	int i;
 	btrie current = root, temp = NULL;
-	for(j=63;j>=(-1);j--){
-		if(current==NULL)
-			break;
-		if(current->port!=256)
-			temp=current;
-		if(ip_upper&((unsigned long long int)1<<j))
-			current=current->right;
-		else
-			current=current->left; 
+	for(i=63;i>=(-1);i--){
+		if(!current) break;
+		if(current->port!=256) temp=current;
+		current = (ip_upper&((unsigned long long int)1<<j))?current=current->right:current=current->left;
 	}
+
     /*
 	if(temp==NULL)
 	  printf("default\n");
     else
 	  printf("%u\n",temp->port);   
-	 */
+	*/
 }
 
 void read_table(char *str, unsigned long long int *ip_upper, unsigned long long int *ip_lower, int *len, unsigned int *nexthop) {

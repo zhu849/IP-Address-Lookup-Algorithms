@@ -5,7 +5,7 @@
 
 #define READ_STR_BUF 100
 
-// use to count computation time on linux sys 
+//Use to count computation time on linux sys 
 static __inline__ unsigned long long rdtsc(void)
 {
   unsigned hi, lo;
@@ -71,7 +71,7 @@ void add_node(unsigned int ip,unsigned char len,unsigned char nexthop){
 		}
 	}
 }
-//split one line and reassembly for ip format
+//Split one line and reassembly for ip format
 void read_table(char *str,unsigned int *ip,int *len,unsigned int *nexthop){
 	char tok[]="./";
 	char buf[READ_STR_BUF],*str1;
@@ -210,7 +210,7 @@ void set_query(char *file_name){
 	}
 }
 
-//create binary trie structure
+//Create binary trie structure
 void create(){
 	int i;
 	begin=rdtsc();//record start time
@@ -219,7 +219,7 @@ void create(){
 		add_node(table[i].ip, table[i].len, table[i].port);
 	end = rdtsc();//record end time
 }
-//count trie node with inorder
+//Count trie node with inorder
 void count_node(btrie r){
 	if(r==NULL)
 		return;
@@ -227,7 +227,7 @@ void count_node(btrie r){
 	num_node++;
 	count_node(r->right);
 }
-//count distribution of computation time 
+//Count distribution of computation time 
 void CountClock()
 {
 	unsigned int i;
@@ -247,7 +247,7 @@ void CountClock()
 		printf("%d\n",NumCntClock[i]);
 	return;
 }
-//table entry shuffle
+//Table entry shuffle
 void shuffle(struct ENTRY *array, int n) {
     srand((unsigned)time(NULL));
     struct ENTRY *temp=(struct ENTRY *)malloc(sizeof(struct ENTRY));
