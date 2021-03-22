@@ -1,5 +1,8 @@
 # Prefix Lens Analysis
 
+## Purpose
+Analysis IPv4 and IPv6 prefix distribution.
+
 ## How to use(ipv4)
 1. complie with `gcc. Use $ gcc ipv4_update_prefixLen_analysis.c` 
 2. Run executable file. `./a.out "target file"`
