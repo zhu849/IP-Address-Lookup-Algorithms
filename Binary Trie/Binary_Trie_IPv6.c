@@ -91,9 +91,13 @@ void search(unsigned long long int ip_upper, unsigned long long int ip_lower){
 	for(i=63;i>=(-1);i--){
 		if(!current) break;
 		if(current->port!=256) temp=current;
-		current = (ip_upper&((unsigned long long int)1<<j))?current=current->right:current=current->left;
+		current = (ip_upper&((unsigned long long int)1<<i))?current=current->right:current=current->left;
 	}
-
+	for(i=63;i>=(-1);i--){
+		if(!current) break;
+		if(current->port!=256) temp=current;
+		current = (ip_lower&((unsigned long long int)1<<i))?current=current->right:current=current->left;
+	}
     /*
 	if(temp==NULL)
 	  printf("default\n");
